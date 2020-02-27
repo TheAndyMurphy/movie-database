@@ -1,0 +1,24 @@
+.section{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    width:auto;
+    &__title{
+        color:#fff;
+        text-transform: capitalize;
+        padding-left: 0.5em;
+        font-size:.9em;
+        line-height:.9em;
+        font-weight: 500;
+    }
+    &__movies{
+        padding: .5em;
+        background:transparent;
+        display: grid;
+        grid-template-columns: repeat(10, 150px);
+        grid-gap: 1.25em;
+        justify-content: flex-start;
+        overflow:hidden;
+        overflow-x:scroll;
+    }
+}
