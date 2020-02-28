@@ -1,21 +1,29 @@
 @import '../../assets/scss/variables.scss';
+@import '../../assets/scss/breakpoints.scss';
+
 
 .card{
     background:transparent;
     width:100%;
     display: flex;
     flex-direction: column;
+    cursor:pointer;
     img{
         max-width:100%;
         border-radius:5px;
-        box-shadow: 5px 5px 10px rgba(0,0,0,.5);
+        box-shadow: 5px 5px 10px rgba(0,0,0,.7);
     }
     &__details{
-        padding: 0.2em 0.5em;
+        padding: 1em 0.5em;
         display: flex;
         flex-direction: column;
         justify-content: space-between;
-        height:6em;
+        height:7.5em;
+        svg{
+            width:.9em;
+            height:.9em;
+            vertical-align: middle;
+        }
     }
     &__title{
         font-size:1em;
@@ -30,5 +38,25 @@
         justify-content: space-between;
         font-size:.8em;
     }
+}
 
+@include bp-tablet{
+    .card{
+        &__details{
+            height:8em;
+            svg{
+                width:1em;
+                height:1em;
+                vertical-align:top;
+            }
+        }
+        &__title{
+            font-size:1.25em;
+            line-height:1.4em;
+        }
+        &__footer{
+            font-size:1em;
+            line-height:1em;
+        }
+    }
 }

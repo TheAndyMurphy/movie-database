@@ -2,6 +2,8 @@ import React, { useState, useEffect }from 'react';
 import './App.scss';
 import NavBar from './components/navbar/navbar.component';
 import Section from './components/section/section.component';
+import Footer from './components/footer/footer.component';
+
 
 
 const App = () => {
@@ -35,7 +37,7 @@ const App = () => {
         console.log(err);
       }
     }
-    const loadNewestMovies = async() => {
+    const loadFutureMovies = async() => {
       try{
         const response = await fetch(`https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}&language=en-US&page=1&sort_by=primary_release_date.desc&primary_release_date.gte=2020-01-25`);
         const data = await response.json();
@@ -47,7 +49,7 @@ const App = () => {
     }
     loadConfig();
     loadPopularMovies();
-    loadNewestMovies();
+    loadFutureMovies();
   }, [apiKey])
 
 
@@ -57,8 +59,10 @@ const App = () => {
     <div className="App">
         <NavBar />
         <div className="container">
-          <Section movies={popularMovies} baseUrl={baseUrl} posterSize={posterSize} />
-          <Section movies={newMovies} baseUrl={baseUrl} posterSize={posterSize} />
+          <Section title='popular movies' movies={popularMovies} baseUrl={baseUrl} posterSize={posterSize} />
+          <Section title='coming soon' movies={newMovies} baseUrl={baseUrl} posterSize={posterSize} />
+          <Footer />
+
         </div>
 
     </div>

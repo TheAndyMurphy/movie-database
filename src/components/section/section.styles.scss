@@ -1,8 +1,13 @@
+@import '../../assets/scss/breakpoints.scss';
+@import '../../assets/scss/variables.scss';
+
 .section{
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     width:auto;
+    margin: 1em 0;
+    margin-bottom: 1.5em;
     &__title{
         color:#fff;
         text-transform: capitalize;
@@ -12,13 +17,53 @@
         font-weight: 500;
     }
     &__movies{
-        padding: .5em;
+        padding: 2em .5em;
         background:transparent;
         display: grid;
         grid-template-columns: repeat(10, 150px);
         grid-gap: 1.25em;
         justify-content: flex-start;
-        overflow:hidden;
-        overflow-x:scroll;
+        overflow-x:auto;
+        scrollbar-color: $light-color $dark-color;
+        scrollbar-width: thin;
+        &::-webkit-scrollbar{
+            height:3px;
+            box-shadow: 0 0px 2px rgba(0,0,0,.5);
+            -webkit-box-shadow: 0 0 2px rgba(0, 0, 0, 0.5) !important;
+            &-button{
+                display:none;    
+            }
+            &-thumb{
+                background:$light-color;
+            }
+            &-track-piece{
+                background:$dark-color;
+            }
+        } 
+    }
+}
+@include bp-tablet{
+    .section{
+        margin:2em 0;
+        &__title{
+            font-size:1em;
+            line-height:1em;
+        }
+        &__movies{
+            grid-template-columns: repeat(10, 180px);
+            grid-gap:2em;
+            padding-bottom:3em;
+        }
+    }
+}
+
+@include bp-laptop{
+    .section{
+        margin:3em 0;
+        &__movies{
+            &::-webkit-scrollbar{
+                height:8px;
+            }
+        }
     }
 }

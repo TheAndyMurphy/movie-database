@@ -1,4 +1,6 @@
 @import '../../assets/scss/variables.scss';
+@import '../../assets/scss/breakpoints.scss';
+
 
 .navbar{
     padding: 1em;
@@ -15,7 +17,6 @@
         align-items:flex-end;
         justify-content: space-between;
         span{
-            border-radius:2px;
             background:#fff;
             &:nth-child(1){
                 width:30px;
@@ -30,5 +31,11 @@
                 height: 2px;
             }
         }
+    }
+}
+
+@include bp-tablet{
+    .navbar{
+        padding: 1em 2em;
     }
 }
