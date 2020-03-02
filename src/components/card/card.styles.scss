@@ -42,6 +42,10 @@
 
 @include bp-tablet{
     .card{
+        transition:.5s;
+        &:hover{
+            transform: scale(1.1);
+        }
         &__details{
             height:8em;
             svg{

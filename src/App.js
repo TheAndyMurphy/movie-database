@@ -2,6 +2,7 @@ import React, { useState, useEffect }from 'react';
 import './App.scss';
 import NavBar from './components/navbar/navbar.component';
 import Section from './components/section/section.component';
+import Modal from './components/modal/modal.component';
 import Footer from './components/footer/footer.component';
 
 
@@ -50,17 +51,28 @@ const App = () => {
     loadConfig();
     loadPopularMovies();
     loadFutureMovies();
-  }, [apiKey])
+  }, [apiKey]);
 
-
+  const [modalState, setModalState] = useState(false);
+  const [selectedMovie, setSelectedMovie] = useState([]);
+  const toggleModal =() => setModalState(!modalState);
+  const toggleMovie = (movie) => {
+      setSelectedMovie(movie);
+      toggleModal();
+      console.log(movie)
+  };
 
 
   return(
     <div className="App">
+      {
+        modalState && 
+        <Modal movie={selectedMovie} toggleModal={toggleModal} baseUrl={baseUrl} posterSize={posterSize} />
+      }
         <NavBar />
         <div className="container">
-          <Section title='popular movies' movies={popularMovies} baseUrl={baseUrl} posterSize={posterSize} />
-          <Section title='coming soon' movies={newMovies} baseUrl={baseUrl} posterSize={posterSize} />
+          <Section title='popular movies' movies={popularMovies} baseUrl={baseUrl} posterSize={posterSize} toggleMovie={toggleMovie}/>
+          <Section title='coming soon' movies={newMovies} baseUrl={baseUrl} posterSize={posterSize} toggleMovie={toggleMovie} />
           <Footer />
 
         </div>
