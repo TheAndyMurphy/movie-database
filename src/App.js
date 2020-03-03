@@ -57,7 +57,7 @@ const App = () => {
   const [selectedMovie, setSelectedMovie] = useState([]);
   const toggleModal =() => setModalState(!modalState);
   const toggleMovie = async (movie) => {
-      const response = await fetch(`http://api.themoviedb.org/3/movie/${movie}?api_key=${apiKey}&append_to_response=videos`);
+      const response = await fetch(`https://api.themoviedb.org/3/movie/${movie}?api_key=${apiKey}&append_to_response=videos`);
       const data = await response.json();
       setSelectedMovie(data);
       toggleModal();
