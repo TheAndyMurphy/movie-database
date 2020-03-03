@@ -30,7 +30,7 @@ const App = () => {
   
     const loadPopularMovies = async() => {
       try{
-        const response = await fetch(`https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1`);
+        const response = await fetch(`https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=true&page=1`);
         const data = await response.json();
         setPopularMovies(data.results);
       }
@@ -56,10 +56,12 @@ const App = () => {
   const [modalState, setModalState] = useState(false);
   const [selectedMovie, setSelectedMovie] = useState([]);
   const toggleModal =() => setModalState(!modalState);
-  const toggleMovie = (movie) => {
-      setSelectedMovie(movie);
+  const toggleMovie = async (movie) => {
+      const response = await fetch(`http://api.themoviedb.org/3/movie/${movie}?api_key=${apiKey}&append_to_response=videos`);
+      const data = await response.json();
+      setSelectedMovie(data);
       toggleModal();
-      console.log(movie)
+      console.log(data)
   };
 
 
