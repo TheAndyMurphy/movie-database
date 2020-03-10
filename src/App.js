@@ -30,7 +30,7 @@ const App = () => {
   
     const loadPopularMovies = async() => {
       try{
-        const response = await fetch(`https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=true&page=1`);
+        const response = await fetch(`https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1`);
         const data = await response.json();
         setPopularMovies(data.results);
       }
@@ -38,9 +38,9 @@ const App = () => {
         console.log(err);
       }
     }
-    const loadFutureMovies = async() => {
+    const loadNewReleases = async() => {
       try{
-        const response = await fetch(`https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}&language=en-US&page=1&sort_by=primary_release_date.desc&primary_release_date.gte=2020-01-25`);
+        const response = await fetch(`https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}&language=en-US?&primary_release_date.gte=2020-02-15&primary_release_date.lte=2020-03-10`);
         const data = await response.json();
         setNewMovies(data.results);
       }
@@ -50,7 +50,7 @@ const App = () => {
     }
     loadConfig();
     loadPopularMovies();
-    loadFutureMovies();
+    loadNewReleases();
   }, [apiKey]);
 
   const [modalState, setModalState] = useState(false);
@@ -74,7 +74,7 @@ const App = () => {
         <NavBar />
         <div className="container">
           <Section title='popular movies' movies={popularMovies} baseUrl={baseUrl} posterSize={posterSize} toggleMovie={toggleMovie}/>
-          <Section title='coming soon' movies={newMovies} baseUrl={baseUrl} posterSize={posterSize} toggleMovie={toggleMovie} />
+          <Section title='new releases' movies={newMovies} baseUrl={baseUrl} posterSize={posterSize}  toggleMovie={toggleMovie}/>
           <Footer />
 
         </div>
